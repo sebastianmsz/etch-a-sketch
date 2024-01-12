@@ -5,8 +5,33 @@ slider.addEventListener('input', ()=>{
 
 
 const colorPicker = document.querySelector('#colorPicker')
-
 let mouseState = false;
+
+const colorModeButton = document.querySelector('#colorModeButton')
+const rainbowModeButton = document.querySelector('#rainbowModeButton')
+const eraserModeButton = document.querySelector('#eraserModeButton')
+const clearButton = document.querySelector('#clearButton')
+let buttonMode = 1;
+
+colorModeButton.addEventListener('click', ()=>{
+    buttonMode = 1;
+})
+
+rainbowModeButton.addEventListener('click', ()=>{
+    buttonMode = 2;
+})
+
+eraserModeButton.addEventListener('click', ()=>{
+    buttonMode = 3;
+})
+
+clearButton.addEventListener('click', ()=>{
+    document.querySelectorAll('.pixel').forEach((pix)=>{
+        pix.style.background = 'white';
+    })
+
+})
+
 function addPixelEvents(pixel) {
     pixel.addEventListener('mousedown', (e) => {
         e.preventDefault();
