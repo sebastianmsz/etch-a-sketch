@@ -43,3 +43,8 @@ function createGrid(newGridSize=16) {
 }
 
 createGrid();
+
+
+function getRandomColor(){
+    return `#${Math.floor(Math.random() * 999999)}`;
+}
