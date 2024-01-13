@@ -15,14 +15,23 @@ let buttonMode = 1;
 
 colorModeButton.addEventListener('click', ()=>{
     buttonMode = 1;
+    colorModeButton.style.cssText = 'background-color: black; color: white;';
+    rainbowModeButton.style.cssText = 'background-color: white; color: black;';
+    eraserModeButton.style.cssText = 'background-color: white; color: black;';
 })
 
 rainbowModeButton.addEventListener('click', ()=>{
     buttonMode = 2;
+    colorModeButton.style.cssText = 'background-color: white; color: black;';
+    rainbowModeButton.style.cssText = 'background-color: black; color: white;';
+    eraserModeButton.style.cssText = 'background-color: white; color: black;';
 })
 
 eraserModeButton.addEventListener('click', ()=>{
     buttonMode = 3;
+    colorModeButton.style.cssText = 'background-color: white; color: black;';
+    rainbowModeButton.style.cssText = 'background-color: white; color: black;';
+    eraserModeButton.style.cssText = 'background-color: black; color: white;';
 })
 
 clearButton.addEventListener('click', ()=>{
@@ -36,19 +45,38 @@ function addPixelEvents(pixel) {
     pixel.addEventListener('mousedown', (e) => {
         e.preventDefault();
         mouseState = true;
-        pixel.style.background = colorPicker.value;
+        switch (buttonMode){
+            case 1: 
+            pixel.style.background = colorPicker.value;
+            break;
+            case 2: 
+            pixel.style.background = getRandomColor();
+            break;
+            case 3: 
+            pixel.style.background = 'white';
+            break;
+        }
+        
     });
-
     pixel.addEventListener('mouseover', () => {
         if (mouseState) {
-            pixel.style.background = colorPicker.value;
+            switch (buttonMode){
+                case 1: 
+                pixel.style.background = colorPicker.value;
+                break;
+                case 2: 
+                pixel.style.background = getRandomColor();
+                break;
+                case 3: 
+                pixel.style.background = 'white';
+                break;
+            }
         }
     });
 
     pixel.addEventListener('mouseup', () => {
         mouseState = false;
     });
-
     return pixel;
 }
 
@@ -71,5 +99,5 @@ createGrid();
 
 
 function getRandomColor(){
-    return `#${Math.floor(Math.random() * 999999)}`;
+    return `#${Math.round(Math.random()*16777215).toString(16)}`;
 }
