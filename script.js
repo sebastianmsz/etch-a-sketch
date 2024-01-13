@@ -1,6 +1,7 @@
 const slider = document.querySelector('#slider');
 slider.addEventListener('input', ()=>{
     createGrid(slider.value)
+    document.querySelector('#gridSize').textContent = `${slider.value}x${slider.value}`;
 });
 
 
